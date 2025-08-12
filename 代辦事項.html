@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代辦事項</title>
+    <style>
+        body{
+            background-color:rgba(255, 228, 196, 0.878);
+        }
+        h1{
+            text-align: center;
+        }
+        .container{
+            width: 100%;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px auto;
+            
+        }
+        .input-box {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        button{
+            background-color:rgb(240, 193, 136);
+            border: none;
+            border-radius: 5px;
+            color:black;
+        }
+        button:hover{
+            background-color:bisque;
+            
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            background-color: #f9f9f9;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        
+        .delbtn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .delbtn:hover{
+            background: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>待辦事項</h1>
+        <div class="input-box">
+            <input type="text" id="todo-input" placeholder="請輸入代辦事項">
+            <button id="add-btn">新增</button>
+        </div>
+        <ul id="todo-list"></ul>
+    </div>
+    <script>
+    // 用 querySelector 取得頁面上的元素（用 CSS 選擇器）
+    const input = document.getElementById('todo-input');
+    const button = document.getElementById('add-btn');
+    const list = document.getElementById('todo-list');
+
+    // 新增待辦事項函式
+    function addTodo() {
+    const text = input.value.trim(); // 取得輸入並去除空白
+    if (text === '') {
+      alert('請輸入代辦事項');
+      return;
+    }
+
+    const li = document.createElement('li'); // 建立 li 元素
+    li.textContent = text; // 放入待辦文字
+
+    const delete_btn=document.createElement("button")
+    delete_btn.textContent="刪除"
+    delete_btn.className="delbtn"
+    
+    
+
+    delete_btn.addEventListener("click",() =>{
+        li.remove();
+    })
+
+    li.append(delete_btn)
+    list.appendChild(li); // 把 li 加到 ul 裡面
+
+
+    input.value = ''; // 清空輸入框
+    input.focus();    // 游標回到輸入框
+    }
+
+    // 綁定按鈕點擊事件
+    button.addEventListener('click', addTodo);
+
+
+
+    
+
+
+    
+  </script>
+</body>
+</html>
